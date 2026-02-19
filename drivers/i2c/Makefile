@@ -36,6 +36,7 @@ obj-$(CONFIG_SYS_I2C_MTK) += mtk_i2c.o
 obj-$(CONFIG_SYS_I2C_MT7621) += mt7621_i2c.o
 obj-$(CONFIG_SYS_I2C_NEXELL) += nx_i2c.o
 obj-$(CONFIG_SYS_I2C_NPCM) += npcm_i2c.o
+obj-$(CONFIG_SYS_I2C_NS9360) += ns9360_i2c.o
 obj-$(CONFIG_SYS_I2C_OCORES) += ocores_i2c.o
 obj-$(CONFIG_SYS_I2C_OCTEON) += octeon_i2c.o
 obj-$(CONFIG_SYS_I2C_OMAP24XX) += omap24xx_i2c.o

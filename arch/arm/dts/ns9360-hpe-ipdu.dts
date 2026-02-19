@@ -152,9 +152,9 @@
 			};
 		};
 
-		i2c: i2c@90400000 {
+		i2c: i2c@90500000 {
 			compatible = "digi,ns9360-i2c";
-			reg = <0x90400000 0x100>;
+			reg = <0x90500000 0x100>;
 			clocks = <&bbus_clk>;
 			clock-frequency = <100000>;
 			#address-cells = <1>;

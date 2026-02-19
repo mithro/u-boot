@@ -508,6 +508,13 @@ config SYS_I2C_NPCM
 	help
 	  Support for Nuvoton I2C controller driver.
 
+config SYS_I2C_NS9360
+	bool "Digi NS9360 I2C controller"
+	depends on DM_I2C && ARCH_NS9360
+	help
+	  Support for the I2C master controller in the Digi NS9360 SoC.
+	  Uses a command-based register interface with polled operation.
+
 config SYS_I2C_OCORES
 	bool "ocores I2C driver"
 	depends on DM_I2C
