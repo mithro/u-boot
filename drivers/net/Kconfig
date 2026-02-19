@@ -608,6 +608,15 @@ config NET_NPCM750
 	help
 	  support NPCM750 EMAC
 
+config NS9360_ETH
+	bool "Digi NS9360 Ethernet MAC"
+	depends on ARCH_NS9360
+	select PHYLIB
+	select MII
+	help
+	  Support for the 10/100 Ethernet MAC in the Digi NS9360 SoC.
+	  Uses MII interface to an external PHY (ICS1893 on HPE iPDU).
+
 config NET_OCTEON
 	bool "MIPS Octeon ethernet support"
 	depends on ARCH_OCTEON
