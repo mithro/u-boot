@@ -323,6 +323,14 @@ config MSCC_SGPIO
           SIO controller is to connect control signals from SFP
           modules and to act as an LED controller.
 
+config NS9360_GPIO
+	bool "Digi NS9360 GPIO driver"
+	depends on DM_GPIO && ARCH_NS9360
+	help
+	  Support for the GPIO controller on Digi NS9360 SoCs.
+	  The NS9360 has 73 GPIOs (0-72) in two blocks with
+	  configurable function select, direction, and invert.
+
 config MSM_GPIO
 	bool "Qualcomm GPIO driver"
 	depends on DM_GPIO && ARCH_SNAPDRAGON

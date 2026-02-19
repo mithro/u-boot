@@ -168,6 +168,14 @@ config CLK_K210_SET_RATE
 	  Add functionality to calculate new rates for K210 PLLs. Enabling this
 	  feature adds around 1K to U-Boot's final size.
 
+config CLK_NS9360
+	bool "Enable NS9360 clock driver"
+	depends on CLK && ARCH_NS9360
+	help
+	  Support for the PLL and clock tree of the Digi NS9360 SoC.
+	  Provides system, CPU, AHB, and BBus clock rates derived
+	  from the crystal oscillator and PLL configuration.
+
 config CLK_MPC83XX
 	bool "Enable MPC83xx clock driver"
 	depends on CLK && MPC83xx

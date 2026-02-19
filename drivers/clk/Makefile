@@ -39,6 +39,7 @@ obj-$(CONFIG_CLK_EXYNOS) += exynos/
 obj-$(CONFIG_CLK_HSDK) += clk-hsdk-cgu.o
 obj-$(CONFIG_CLK_K210) += clk_k210.o
 obj-$(CONFIG_CLK_MPC83XX) += mpc83xx_clk.o
+obj-$(CONFIG_CLK_NS9360) += clk_ns9360.o
 obj-$(CONFIG_CLK_MPFS) += microchip/
 obj-$(CONFIG_CLK_MVEBU) += mvebu/
 obj-$(CONFIG_CLK_OCTEON) += clk_octeon.o
