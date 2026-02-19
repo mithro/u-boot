@@ -1,0 +1,13 @@
+HPE INTELLIGENT MODULAR PDU (AF531A)
+M:	Tim Ansell <me@mith.ro>
+S:	Maintained
+F:	arch/arm/dts/ns9360-hpe-ipdu.dts
+F:	arch/arm/mach-ns9360/
+F:	board/hpe/ipdu/
+F:	configs/hpe_ipdu_defconfig
+F:	doc/board/hpe/ipdu.rst
+F:	drivers/serial/serial_ns9360.c
+F:	drivers/net/ns9360_eth.c
+F:	drivers/gpio/ns9360_gpio.c
+F:	drivers/clk/clk_ns9360.c
+F:	include/configs/hpe_ipdu.h

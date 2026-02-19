@@ -1,0 +1,212 @@
+// SPDX-License-Identifier: GPL-2.0+
+/dts-v1/;
+
+/ {
+	model = "HPE Intelligent Modular PDU (AF531A)";
+	compatible = "hpe,ipdu-af531a", "digi,ns9360";
+
+	#address-cells = <1>;
+	#size-cells = <1>;
+
+	chosen {
+		stdout-path = &uart1;
+	};
+
+	aliases {
+		serial0 = &uart1;
+		ethernet0 = &ethernet;
+	};
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,arm926ej-s";
+			reg = <0>;
+			clock-frequency = <176947200>;
+		};
+	};
+
+	clocks {
+		crystal: crystal {
+			compatible = "fixed-clock";
+			#clock-cells = <0>;
+			clock-frequency = <29491200>;
+		};
+
+		pll: pll {
+			compatible = "digi,ns9360-pll";
+			#clock-cells = <0>;
+			clocks = <&crystal>;
+			clock-mult = <12>;
+			clock-div = <2>;
+		};
+
+		cpu_clk: cpu-clk {
+			compatible = "fixed-factor-clock";
+			#clock-cells = <0>;
+			clocks = <&pll>;
+			clock-div = <2>;
+			clock-mult = <1>;
+		};
+
+		ahb_clk: ahb-clk {
+			compatible = "fixed-factor-clock";
+			#clock-cells = <0>;
+			clocks = <&pll>;
+			clock-div = <4>;
+			clock-mult = <1>;
+		};
+
+		bbus_clk: bbus-clk {
+			compatible = "fixed-factor-clock";
+			#clock-cells = <0>;
+			clocks = <&pll>;
+			clock-div = <8>;
+			clock-mult = <1>;
+		};
+	};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0x00000000 0x02000000>;
+	};
+
+	soc {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		syscon: system-controller@a0900000 {
+			compatible = "digi,ns9360-syscon";
+			reg = <0xa0900000 0x100000>;
+		};
+
+		memctrl: memory-controller@a0700000 {
+			compatible = "digi,ns9360-memctrl";
+			reg = <0xa0700000 0x100000>;
+		};
+
+		bbus: bus@90600000 {
+			compatible = "digi,ns9360-bbus", "simple-bus";
+			reg = <0x90600000 0x100000>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
+
+			gpio: gpio@90600010 {
+				compatible = "digi,ns9360-gpio";
+				reg = <0x90600010 0x160>;
+				gpio-controller;
+				#gpio-cells = <2>;
+				ngpios = <73>;
+			};
+		};
+
+		uart0: serial@90200000 {
+			compatible = "digi,ns9360-uart";
+			reg = <0x90200000 0x40>;
+			clocks = <&bbus_clk>;
+			status = "disabled";
+		};
+
+		uart1: serial@90200040 {
+			compatible = "digi,ns9360-uart";
+			reg = <0x90200040 0x40>;
+			clocks = <&bbus_clk>;
+			status = "okay";
+		};
+
+		uart2: serial@90300000 {
+			compatible = "digi,ns9360-uart";
+			reg = <0x90300000 0x40>;
+			clocks = <&bbus_clk>;
+			status = "disabled";
+		};
+
+		uart3: serial@90300040 {
+			compatible = "digi,ns9360-uart";
+			reg = <0x90300040 0x40>;
+			clocks = <&bbus_clk>;
+			status = "disabled";
+		};
+
+		ethernet: ethernet@a0600000 {
+			compatible = "digi,ns9360-eth";
+			reg = <0xa0600000 0x100000>;
+			clocks = <&ahb_clk>;
+			phy-mode = "mii";
+			phy-handle = <&phy0>;
+
+			mdio {
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				phy0: ethernet-phy@1 {
+					compatible = "ethernet-phy-id0015.f441";
+					reg = <1>;
+				};
+			};
+		};
+
+		i2c: i2c@90400000 {
+			compatible = "digi,ns9360-i2c";
+			reg = <0x90400000 0x100>;
+			clocks = <&bbus_clk>;
+			clock-frequency = <100000>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			status = "okay";
+		};
+	};
+
+	flash@40000000 {
+		compatible = "cfi-flash";
+		reg = <0x40000000 0x00800000>;
+		bank-width = <2>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		partition@0 {
+			label = "u-boot";
+			reg = <0x00000000 0x00040000>;
+			read-only;
+		};
+
+		partition@40000 {
+			label = "u-boot-env-backup";
+			reg = <0x00040000 0x00010000>;
+		};
+
+		partition@50000 {
+			label = "kernel";
+			reg = <0x00050000 0x00300000>;
+		};
+
+		partition@350000 {
+			label = "rootfs";
+			reg = <0x00350000 0x004B0000>;
+		};
+	};
+
+	flash@50000000 {
+		compatible = "cfi-flash";
+		reg = <0x50000000 0x00800000>;
+		bank-width = <2>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+
+		partition@0 {
+			label = "data";
+			reg = <0x00000000 0x007F0000>;
+		};
+
+		partition@7f0000 {
+			label = "u-boot-env";
+			reg = <0x007F0000 0x00010000>;
+		};
+	};
+};

@@ -1020,6 +1020,19 @@ config ARCH_MX5
 	select MACH_IMX
 	imply MXC_GPIO
 
+config ARCH_NS9360
+	bool "Digi NS9360"
+	select CPU_ARM926EJS
+	select DM
+	select DM_SERIAL
+	select OF_CONTROL
+	select SUPPORT_BIG_ENDIAN
+	select SUPPORT_LITTLE_ENDIAN
+	help
+	  Support for Digi NS9360 SoC (ARM926EJ-S core). The SoC boots
+	  big-endian but switches to little-endian early in startup.
+	  Used in the ConnectCore 9C module and HPE iPDU.
+
 config ARCH_NEXELL
 	bool "Nexell S5P4418/S5P6818 SoC"
 	select ENABLE_ARM_SOC_BOOT0_HOOK
@@ -2397,6 +2410,8 @@ source "arch/arm/cpu/armv8/Kconfig"
 source "arch/arm/mach-imx/Kconfig"
 
 source "arch/arm/mach-nexell/Kconfig"
+
+source "arch/arm/mach-ns9360/Kconfig"
 
 source "arch/arm/mach-npcm/Kconfig"
 

@@ -47,6 +47,9 @@ dtb-$(CONFIG_ARCH_KIRKWOOD) += \
 	kirkwood-atl-sbx81lifkw.dtb \
 	kirkwood-atl-sbx81lifxcat.dtb
 
+dtb-$(CONFIG_ARCH_NS9360) += \
+	ns9360-hpe-ipdu.dtb
+
 dtb-$(CONFIG_MACH_S900) += \
 	bubblegum_96.dtb
 dtb-$(CONFIG_MACH_S700) += \

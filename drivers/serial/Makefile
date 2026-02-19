@@ -43,6 +43,7 @@ obj-$(CONFIG_STI_ASC_SERIAL) += serial_sti_asc.o
 obj-$(CONFIG_PIC32_SERIAL) += serial_pic32.o
 obj-$(CONFIG_BCM283X_MU_SERIAL) += serial_bcm283x_mu.o
 obj-$(CONFIG_BCM283X_PL011_SERIAL) += serial_bcm283x_pl011.o
+obj-$(CONFIG_NS9360_SERIAL) += serial_ns9360.o
 obj-$(CONFIG_MSM_SERIAL) += serial_msm.o
 obj-$(CONFIG_MSM_GENI_SERIAL) += serial_msm_geni.o
 obj-$(CONFIG_MXS_AUART_SERIAL) += serial_mxs.o

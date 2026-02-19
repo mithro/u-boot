@@ -990,6 +990,14 @@ config MESON_SERIAL
 	  If you have an Amlogic Meson based board and want to use the on-chip
 	  serial ports, say Y to this option. If unsure, say N.
 
+config NS9360_SERIAL
+	bool "Digi NS9360 on-chip UART"
+	depends on DM_SERIAL && ARCH_NS9360
+	help
+	  Support for the serial ports on the Digi NS9360 SoC
+	  (ARM926EJ-S). The NS9360 has 4 serial channels with
+	  configurable baud rate via the BBus clock divider.
+
 config MSM_SERIAL
 	bool "Qualcomm on-chip UART"
 	depends on DM_SERIAL

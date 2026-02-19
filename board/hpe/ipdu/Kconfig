@@ -1,0 +1,21 @@
+if TARGET_HPE_IPDU
+
+config SYS_BOARD
+	default "ipdu"
+
+config SYS_VENDOR
+	default "hpe"
+
+config SYS_SOC
+	default "ns9360"
+
+config SYS_CONFIG_NAME
+	default "hpe_ipdu"
+
+config TEXT_BASE
+	default 0x40000000
+
+config SYS_MONITOR_BASE
+	default TEXT_BASE
+
+endif

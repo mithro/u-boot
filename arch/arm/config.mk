@@ -36,7 +36,11 @@ PLATFORM_CPPFLAGS += -D__ARM__
 ifdef CONFIG_ARM64
 PLATFORM_ELFFLAGS += -B aarch64 -O elf64-littleaarch64
 else
+ifdef CONFIG_SYS_BIG_ENDIAN
+PLATFORM_ELFFLAGS += -B arm -O elf32-bigarm
+else
 PLATFORM_ELFFLAGS += -B arm -O elf32-littlearm
+endif
 # no-movt is only available when targeting AArch32
 LLVM_RELFLAGS	+= $(call cc-option,-mno-movt,)
 endif

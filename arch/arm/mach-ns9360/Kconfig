@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0+
+
+if ARCH_NS9360
+
+config SYS_SOC
+	default "ns9360"
+
+choice
+	prompt "Digi NS9360 board select"
+
+config TARGET_HPE_IPDU
+	bool "HPE Intelligent Modular PDU (AF531A)"
+	help
+	  HPE Intelligent Modular PDU with NS9360B SoC,
+	  32 MB SDRAM, 16 MB NOR flash (2x 8 MB), Ethernet.
+
+endchoice
+
+source "board/hpe/ipdu/Kconfig"
+
+endif
