@@ -139,3 +139,7 @@ __pycache__
 
 # Clang's compilation database file
 /compile_commands.json
+
+# Local QEMU source packages (downloaded here to build the ns9360 test machine)
+/qemu_*.tar.*
+/qemu_*.dsc
